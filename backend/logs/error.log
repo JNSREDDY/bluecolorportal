@@ -1,0 +1,110 @@
+2026-08-29T05:41:13.736Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:199:7)
+2026-08-29T05:42:14.138Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:199:7)
+2026-08-29T05:43:25.532Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:199:7)
+2026-08-29T05:43:57.983Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:199:7)
+2026-08-29T05:44:43.371Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:199:7)
+2026-08-29T05:45:08.373Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.bulkInsert (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\abstract\query-interface.js:346:21)
+    at async recursiveBulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1697:25)
+    at async JobSkill.bulkCreate (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:1786:12)
+    at async seed (C:\Users\HP\OneDrive\Desktop\portal\backend\src\seeders\index.js:200:7)
+2026-08-29T10:22:40.981Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:67:12)
+    at async Worker.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:22:46.629Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:67:12)
+    at async Job.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:39:58.302Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:67:12)
+    at async Job.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:40:51.654Z [error] SequelizeUnknownConstraintError: Constraint employers_ibfk_13 on table employers does not exist
+    at MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Employer.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:41:10.584Z [error] SequelizeUnknownConstraintError: Constraint workers_ibfk_2 on table workers does not exist
+    at MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Worker.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:55:42.980Z [error] SequelizeUnknownConstraintError: Constraint employers_ibfk_21 on table employers does not exist
+    at MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Employer.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T10:56:30.877Z [error] Error
+    at Query.run (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query.js:52:25)
+    at C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:67:12)
+    at async Job.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T11:01:37.550Z [error] SequelizeUnknownConstraintError: Constraint employers_ibfk_27 on table employers does not exist
+    at MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Employer.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
+2026-08-29T11:03:09.136Z [error] SequelizeUnknownConstraintError: Constraint employers_ibfk_29 on table employers does not exist
+    at MySQLQueryInterface.removeConstraint (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\dialects\mysql\query-interface.js:56:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Employer.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\model.js:979:17)
+    at async Sequelize.sync (C:\Users\HP\OneDrive\Desktop\portal\backend\node_modules\sequelize\lib\sequelize.js:377:9)
+    at async start (C:\Users\HP\OneDrive\Desktop\portal\backend\src\server.js:44:3)
