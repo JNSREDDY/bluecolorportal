@@ -21565,3 +21565,745 @@
 2026-08-29T16:27:25.628Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
 2026-08-29T16:27:25.631Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_1`;
 2026-08-29T16:27:25.651Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:44.238Z [debug] Executing (default): SELECT 1+1 AS result
+2026-08-29T17:03:44.251Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:44.267Z [debug] Executing (default): SHOW FULL COLUMNS FROM `users`;
+2026-08-29T17:03:44.279Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'users' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:44.290Z [debug] Executing (default): ALTER TABLE `users` CHANGE `email` `email` VARCHAR(190) NOT NULL UNIQUE;
+2026-08-29T17:03:44.501Z [debug] Executing (default): ALTER TABLE `users` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+2026-08-29T17:03:44.573Z [debug] Executing (default): ALTER TABLE `users` CHANGE `role` `role` ENUM('admin', 'employer', 'recruiter', 'worker') NOT NULL;
+2026-08-29T17:03:44.660Z [debug] Executing (default): ALTER TABLE `users` CHANGE `is_active` `is_active` TINYINT(1) DEFAULT true;
+2026-08-29T17:03:44.755Z [debug] Executing (default): ALTER TABLE `users` CHANGE `is_email_verified` `is_email_verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:44.892Z [debug] Executing (default): ALTER TABLE `users` CHANGE `refresh_token` `refresh_token` TEXT;
+2026-08-29T17:03:44.971Z [debug] Executing (default): ALTER TABLE `users` CHANGE `last_login_at` `last_login_at` DATETIME;
+2026-08-29T17:03:45.041Z [debug] Executing (default): ALTER TABLE `users` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:45.116Z [debug] Executing (default): ALTER TABLE `users` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:45.194Z [debug] Executing (default): SHOW INDEX FROM `users`
+2026-08-29T17:03:45.208Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'companies' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:45.215Z [debug] Executing (default): SHOW FULL COLUMNS FROM `companies`;
+2026-08-29T17:03:45.217Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'companies' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:45.227Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `name` `name` VARCHAR(190) NOT NULL;
+2026-08-29T17:03:45.318Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `gst` `gst` VARCHAR(20);
+2026-08-29T17:03:45.373Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `pan` `pan` VARCHAR(20);
+2026-08-29T17:03:45.428Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `address` `address` VARCHAR(255);
+2026-08-29T17:03:45.478Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:03:45.534Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:03:45.575Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `pincode` `pincode` VARCHAR(10);
+2026-08-29T17:03:45.609Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `industry` `industry` VARCHAR(120);
+2026-08-29T17:03:45.636Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `logo` `logo` VARCHAR(500);
+2026-08-29T17:03:45.736Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `website` `website` VARCHAR(255);
+2026-08-29T17:03:45.767Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `description` `description` TEXT;
+2026-08-29T17:03:45.793Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `employee_count` `employee_count` INTEGER DEFAULT 0;
+2026-08-29T17:03:45.820Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `verification_status` `verification_status` ENUM('pending', 'approved', 'rejected', 'suspended') DEFAULT 'pending';
+2026-08-29T17:03:45.857Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:45.916Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:46.084Z [debug] Executing (default): SHOW INDEX FROM `companies`
+2026-08-29T17:03:46.089Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:46.096Z [debug] Executing (default): SHOW FULL COLUMNS FROM `workers`;
+2026-08-29T17:03:46.100Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:46.118Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='workers' AND constraint_name = 'workers_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:46.128Z [debug] Executing (default): ALTER TABLE `workers` DROP FOREIGN KEY `workers_ibfk_1`;
+2026-08-29T17:03:46.217Z [debug] Executing (default): ALTER TABLE `workers` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:46.414Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `first_name` `first_name` VARCHAR(80) NOT NULL;
+2026-08-29T17:03:46.477Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `last_name` `last_name` VARCHAR(80) NOT NULL;
+2026-08-29T17:03:46.523Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:03:46.613Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `photo` `photo` VARCHAR(500);
+2026-08-29T17:03:46.674Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `date_of_birth` `date_of_birth` DATE;
+2026-08-29T17:03:46.734Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `gender` `gender` ENUM('male', 'female', 'other');
+2026-08-29T17:03:46.811Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `address` `address` VARCHAR(255);
+2026-08-29T17:03:46.882Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:03:46.952Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:03:47.037Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `pincode` `pincode` VARCHAR(10);
+2026-08-29T17:03:47.108Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `expected_salary` `expected_salary` INTEGER;
+2026-08-29T17:03:47.168Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `preferred_locations` `preferred_locations` JSON;
+2026-08-29T17:03:47.186Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `availability` `availability` ENUM('immediate', '15_days', '30_days', 'not_looking') DEFAULT 'immediate';
+2026-08-29T17:03:47.207Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `languages` `languages` JSON;
+2026-08-29T17:03:47.228Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `education` `education` VARCHAR(190);
+2026-08-29T17:03:47.253Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `years_experience` `years_experience` INTEGER DEFAULT 0;
+2026-08-29T17:03:47.324Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `profile_completion` `profile_completion` INTEGER DEFAULT 20;
+2026-08-29T17:03:47.378Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `trust_score` `trust_score` DECIMAL(4,1) DEFAULT 50;
+2026-08-29T17:03:47.435Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `digital_id` `digital_id` VARCHAR(40) UNIQUE;
+2026-08-29T17:03:47.552Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `qr_code` `qr_code` TEXT;
+2026-08-29T17:03:47.603Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `is_verified` `is_verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:47.681Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `bio` `bio` TEXT;
+2026-08-29T17:03:47.745Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:47.811Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:47.947Z [debug] Executing (default): SHOW INDEX FROM `workers`
+2026-08-29T17:03:47.958Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'employers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:47.963Z [debug] Executing (default): SHOW FULL COLUMNS FROM `employers`;
+2026-08-29T17:03:47.964Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'employers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:47.971Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employers' AND constraint_name = 'employers_ibfk_5' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:47.978Z [debug] Executing (default): ALTER TABLE `employers` DROP FOREIGN KEY `employers_ibfk_5`;
+2026-08-29T17:03:48.029Z [debug] Executing (default): ALTER TABLE `employers` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:48.242Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employers' AND constraint_name = 'employers_ibfk_6' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:48.246Z [debug] Executing (default): ALTER TABLE `employers` DROP FOREIGN KEY `employers_ibfk_6`;
+2026-08-29T17:03:48.261Z [debug] Executing (default): ALTER TABLE `employers` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:48.429Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `designation` `designation` VARCHAR(120) DEFAULT 'Owner';
+2026-08-29T17:03:48.452Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `is_owner` `is_owner` TINYINT(1) DEFAULT true;
+2026-08-29T17:03:48.483Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:03:48.509Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `full_name` `full_name` VARCHAR(120);
+2026-08-29T17:03:48.534Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:48.558Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:48.585Z [debug] Executing (default): SHOW INDEX FROM `employers`
+2026-08-29T17:03:48.592Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'recruiters' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:48.602Z [debug] Executing (default): SHOW FULL COLUMNS FROM `recruiters`;
+2026-08-29T17:03:48.605Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'recruiters' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:48.612Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='recruiters' AND constraint_name = 'recruiters_ibfk_5' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:48.619Z [debug] Executing (default): ALTER TABLE `recruiters` DROP FOREIGN KEY `recruiters_ibfk_5`;
+2026-08-29T17:03:48.685Z [debug] Executing (default): ALTER TABLE `recruiters` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:48.862Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='recruiters' AND constraint_name = 'recruiters_ibfk_6' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:48.868Z [debug] Executing (default): ALTER TABLE `recruiters` DROP FOREIGN KEY `recruiters_ibfk_6`;
+2026-08-29T17:03:48.906Z [debug] Executing (default): ALTER TABLE `recruiters` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:49.078Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `invited_by` `invited_by` INTEGER UNSIGNED;
+2026-08-29T17:03:49.101Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `designation` `designation` VARCHAR(120) DEFAULT 'Recruiter';
+2026-08-29T17:03:49.138Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:03:49.168Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `full_name` `full_name` VARCHAR(120);
+2026-08-29T17:03:49.206Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `status` `status` ENUM('invited', 'active', 'deactivated') DEFAULT 'invited';
+2026-08-29T17:03:49.249Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:49.284Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:49.323Z [debug] Executing (default): SHOW INDEX FROM `recruiters`
+2026-08-29T17:03:49.330Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'jobs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:49.335Z [debug] Executing (default): SHOW FULL COLUMNS FROM `jobs`;
+2026-08-29T17:03:49.337Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'jobs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:49.344Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:49.350Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_4`;
+2026-08-29T17:03:49.418Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:49.644Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_5' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:49.648Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_5`;
+2026-08-29T17:03:49.727Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`posted_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:49.949Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_6' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:49.952Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_6`;
+2026-08-29T17:03:50.025Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`recruiter_id`) REFERENCES `recruiters` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:03:50.247Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `title` `title` VARCHAR(190) NOT NULL;
+2026-08-29T17:03:50.308Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `description` `description` TEXT;
+2026-08-29T17:03:50.369Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `salary_min` `salary_min` INTEGER;
+2026-08-29T17:03:50.424Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `salary_max` `salary_max` INTEGER;
+2026-08-29T17:03:50.457Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `experience_min` `experience_min` INTEGER DEFAULT 0;
+2026-08-29T17:03:50.481Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `experience_max` `experience_max` INTEGER DEFAULT 10;
+2026-08-29T17:03:50.501Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `vacancies` `vacancies` INTEGER DEFAULT 1;
+2026-08-29T17:03:50.526Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `location` `location` VARCHAR(190);
+2026-08-29T17:03:50.546Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:03:50.567Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:03:50.590Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `job_type` `job_type` ENUM('full_time', 'contract', 'daily_wage', 'part_time') DEFAULT 'full_time';
+2026-08-29T17:03:50.622Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `shift` `shift` ENUM('day', 'night', 'rotational') DEFAULT 'day';
+2026-08-29T17:03:50.676Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `accommodation` `accommodation` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:50.719Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `food` `food` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:50.769Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `benefits` `benefits` TEXT;
+2026-08-29T17:03:50.817Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `deadline` `deadline` DATE;
+2026-08-29T17:03:50.869Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `status` `status` ENUM('draft', 'published', 'paused', 'closed') DEFAULT 'draft';
+2026-08-29T17:03:50.923Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:51.048Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:51.123Z [debug] Executing (default): SHOW INDEX FROM `jobs`
+2026-08-29T17:03:51.130Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'applications' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:51.138Z [debug] Executing (default): SHOW FULL COLUMNS FROM `applications`;
+2026-08-29T17:03:51.141Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'applications' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:51.153Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:51.161Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_4`;
+2026-08-29T17:03:51.240Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:51.393Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:51.396Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_2`;
+2026-08-29T17:03:51.432Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:51.612Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_3' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:51.616Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_3`;
+2026-08-29T17:03:51.652Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`recruiter_id`) REFERENCES `recruiters` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:03:51.827Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `status` `status` ENUM('applied', 'shortlisted', 'interview_scheduled', 'interview_completed', 'selected', 'rejected', 'offer_sent', 'joined') DEFAULT 'applied';
+2026-08-29T17:03:51.866Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `cover_note` `cover_note` TEXT;
+2026-08-29T17:03:51.898Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:51.930Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:51.960Z [debug] Executing (default): SHOW INDEX FROM `applications`
+2026-08-29T17:03:51.982Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:51.989Z [debug] Executing (default): SHOW FULL COLUMNS FROM `skills`;
+2026-08-29T17:03:51.990Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:51.995Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `name` `name` VARCHAR(80) NOT NULL UNIQUE;
+2026-08-29T17:03:52.075Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `category` `category` VARCHAR(80);
+2026-08-29T17:03:52.106Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:52.134Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:52.166Z [debug] Executing (default): SHOW INDEX FROM `skills`
+2026-08-29T17:03:52.183Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'worker_skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:52.189Z [debug] Executing (default): SHOW FULL COLUMNS FROM `worker_skills`;
+2026-08-29T17:03:52.191Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'worker_skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:52.198Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='worker_skills' AND constraint_name = 'worker_skills_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:52.205Z [debug] Executing (default): ALTER TABLE `worker_skills` DROP FOREIGN KEY `worker_skills_ibfk_1`;
+2026-08-29T17:03:52.244Z [debug] Executing (default): ALTER TABLE `worker_skills` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:52.425Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='worker_skills' AND constraint_name = 'worker_skills_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:52.428Z [debug] Executing (default): ALTER TABLE `worker_skills` DROP FOREIGN KEY `worker_skills_ibfk_2`;
+2026-08-29T17:03:52.448Z [debug] Executing (default): ALTER TABLE `worker_skills` ADD FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:52.627Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `proficiency` `proficiency` ENUM('beginner', 'intermediate', 'expert') DEFAULT 'intermediate';
+2026-08-29T17:03:52.650Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:52.675Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:52.700Z [debug] Executing (default): SHOW INDEX FROM `worker_skills`
+2026-08-29T17:03:52.723Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'job_skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:52.729Z [debug] Executing (default): SHOW FULL COLUMNS FROM `job_skills`;
+2026-08-29T17:03:52.731Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'job_skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:52.739Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='job_skills' AND constraint_name = 'job_skills_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:52.745Z [debug] Executing (default): ALTER TABLE `job_skills` DROP FOREIGN KEY `job_skills_ibfk_1`;
+2026-08-29T17:03:52.777Z [debug] Executing (default): ALTER TABLE `job_skills` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:52.937Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='job_skills' AND constraint_name = 'job_skills_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:52.940Z [debug] Executing (default): ALTER TABLE `job_skills` DROP FOREIGN KEY `job_skills_ibfk_2`;
+2026-08-29T17:03:52.962Z [debug] Executing (default): ALTER TABLE `job_skills` ADD FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:53.117Z [debug] Executing (default): ALTER TABLE `job_skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.137Z [debug] Executing (default): ALTER TABLE `job_skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.157Z [debug] Executing (default): SHOW INDEX FROM `job_skills`
+2026-08-29T17:03:53.175Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'certificates' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:53.181Z [debug] Executing (default): SHOW FULL COLUMNS FROM `certificates`;
+2026-08-29T17:03:53.183Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'certificates' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:53.189Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='certificates' AND constraint_name = 'certificates_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:53.195Z [debug] Executing (default): ALTER TABLE `certificates` DROP FOREIGN KEY `certificates_ibfk_1`;
+2026-08-29T17:03:53.228Z [debug] Executing (default): ALTER TABLE `certificates` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:53.397Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `name` `name` VARCHAR(190) NOT NULL;
+2026-08-29T17:03:53.416Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `issuer` `issuer` VARCHAR(190);
+2026-08-29T17:03:53.437Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `issued_at` `issued_at` DATE;
+2026-08-29T17:03:53.460Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `file_url` `file_url` VARCHAR(500);
+2026-08-29T17:03:53.483Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `verified` `verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:53.509Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.532Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.552Z [debug] Executing (default): SHOW INDEX FROM `certificates`
+2026-08-29T17:03:53.567Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'interviews' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:53.573Z [debug] Executing (default): SHOW FULL COLUMNS FROM `interviews`;
+2026-08-29T17:03:53.574Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'interviews' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:53.582Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='interviews' AND constraint_name = 'interviews_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:53.588Z [debug] Executing (default): ALTER TABLE `interviews` DROP FOREIGN KEY `interviews_ibfk_1`;
+2026-08-29T17:03:53.624Z [debug] Executing (default): ALTER TABLE `interviews` ADD FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:53.780Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `scheduled_at` `scheduled_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.789Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `mode` `mode` ENUM('in_person', 'phone', 'video') DEFAULT 'in_person';
+2026-08-29T17:03:53.798Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `location` `location` VARCHAR(255);
+2026-08-29T17:03:53.808Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `status` `status` ENUM('scheduled', 'completed', 'cancelled', 'no_show') DEFAULT 'scheduled';
+2026-08-29T17:03:53.819Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `notes` `notes` TEXT;
+2026-08-29T17:03:53.829Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.838Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:53.849Z [debug] Executing (default): SHOW INDEX FROM `interviews`
+2026-08-29T17:03:53.859Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'offers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:53.866Z [debug] Executing (default): SHOW FULL COLUMNS FROM `offers`;
+2026-08-29T17:03:53.867Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'offers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:53.872Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='offers' AND constraint_name = 'offers_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:53.879Z [debug] Executing (default): ALTER TABLE `offers` DROP FOREIGN KEY `offers_ibfk_1`;
+2026-08-29T17:03:53.908Z [debug] Executing (default): ALTER TABLE `offers` ADD FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:54.034Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `salary` `salary` INTEGER NOT NULL;
+2026-08-29T17:03:54.053Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `joining_date` `joining_date` DATE;
+2026-08-29T17:03:54.071Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `letter_url` `letter_url` TEXT;
+2026-08-29T17:03:54.093Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `status` `status` ENUM('sent', 'accepted', 'declined', 'expired') DEFAULT 'sent';
+2026-08-29T17:03:54.117Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `terms` `terms` TEXT;
+2026-08-29T17:03:54.140Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:54.163Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:54.185Z [debug] Executing (default): SHOW INDEX FROM `offers`
+2026-08-29T17:03:54.198Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'notifications' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:54.204Z [debug] Executing (default): SHOW FULL COLUMNS FROM `notifications`;
+2026-08-29T17:03:54.206Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'notifications' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:54.212Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='notifications' AND constraint_name = 'notifications_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:54.219Z [debug] Executing (default): ALTER TABLE `notifications` DROP FOREIGN KEY `notifications_ibfk_1`;
+2026-08-29T17:03:54.251Z [debug] Executing (default): ALTER TABLE `notifications` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:54.428Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `title` `title` VARCHAR(190) NOT NULL;
+2026-08-29T17:03:54.438Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `message` `message` TEXT NOT NULL;
+2026-08-29T17:03:54.450Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `type` `type` VARCHAR(60) DEFAULT 'info';
+2026-08-29T17:03:54.464Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `is_read` `is_read` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:54.480Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `metadata` `metadata` JSON;
+2026-08-29T17:03:54.503Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:54.525Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:54.551Z [debug] Executing (default): SHOW INDEX FROM `notifications`
+2026-08-29T17:03:54.564Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'ratings' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:54.569Z [debug] Executing (default): SHOW FULL COLUMNS FROM `ratings`;
+2026-08-29T17:03:54.570Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'ratings' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:54.578Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='ratings' AND constraint_name = 'ratings_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:54.585Z [debug] Executing (default): ALTER TABLE `ratings` DROP FOREIGN KEY `ratings_ibfk_1`;
+2026-08-29T17:03:54.626Z [debug] Executing (default): ALTER TABLE `ratings` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:54.758Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='ratings' AND constraint_name = 'ratings_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:54.761Z [debug] Executing (default): ALTER TABLE `ratings` DROP FOREIGN KEY `ratings_ibfk_2`;
+2026-08-29T17:03:54.787Z [debug] Executing (default): ALTER TABLE `ratings` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:03:54.987Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `rating` `rating` DECIMAL(2,1) NOT NULL;
+2026-08-29T17:03:55.007Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `comment` `comment` TEXT;
+2026-08-29T17:03:55.033Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `type` `type` ENUM('employer_to_worker', 'worker_to_company') DEFAULT 'employer_to_worker';
+2026-08-29T17:03:55.055Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:55.074Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:55.098Z [debug] Executing (default): SHOW INDEX FROM `ratings`
+2026-08-29T17:03:55.115Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'employment_history' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:55.121Z [debug] Executing (default): SHOW FULL COLUMNS FROM `employment_history`;
+2026-08-29T17:03:55.123Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'employment_history' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:55.129Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employment_history' AND constraint_name = 'employment_history_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:55.134Z [debug] Executing (default): ALTER TABLE `employment_history` DROP FOREIGN KEY `employment_history_ibfk_1`;
+2026-08-29T17:03:55.168Z [debug] Executing (default): ALTER TABLE `employment_history` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:55.361Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `company_name` `company_name` VARCHAR(190) NOT NULL;
+2026-08-29T17:03:55.385Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `role` `role` VARCHAR(120) NOT NULL;
+2026-08-29T17:03:55.407Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `start_date` `start_date` DATE;
+2026-08-29T17:03:55.430Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `end_date` `end_date` DATE;
+2026-08-29T17:03:55.451Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `currently_working` `currently_working` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:55.476Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `description` `description` TEXT;
+2026-08-29T17:03:55.502Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:55.528Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:55.550Z [debug] Executing (default): SHOW INDEX FROM `employment_history`
+2026-08-29T17:03:55.561Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'verification_requests' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:55.568Z [debug] Executing (default): SHOW FULL COLUMNS FROM `verification_requests`;
+2026-08-29T17:03:55.569Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'verification_requests' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:55.576Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='verification_requests' AND constraint_name = 'verification_requests_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:55.583Z [debug] Executing (default): ALTER TABLE `verification_requests` DROP FOREIGN KEY `verification_requests_ibfk_1`;
+2026-08-29T17:03:55.623Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='verification_requests' AND constraint_name = 'verification_requests_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:55.638Z [debug] Executing (default): ALTER TABLE `verification_requests` DROP FOREIGN KEY `verification_requests_ibfk_2`;
+2026-08-29T17:03:55.680Z [debug] Executing (default): ALTER TABLE `verification_requests` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:55.862Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `type` `type` ENUM('employer', 'worker', 'certificate') NOT NULL;
+2026-08-29T17:03:55.879Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `entity_id` `entity_id` INTEGER UNSIGNED;
+2026-08-29T17:03:55.896Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `status` `status` ENUM('pending', 'approved', 'rejected') DEFAULT 'pending';
+2026-08-29T17:03:55.917Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `notes` `notes` TEXT;
+2026-08-29T17:03:55.940Z [debug] Executing (default): ALTER TABLE `verification_requests` ADD FOREIGN KEY (`reviewed_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:03:56.113Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.132Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.151Z [debug] Executing (default): SHOW INDEX FROM `verification_requests`
+2026-08-29T17:03:56.165Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'company_documents' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:56.170Z [debug] Executing (default): SHOW FULL COLUMNS FROM `company_documents`;
+2026-08-29T17:03:56.172Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'company_documents' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:56.179Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='company_documents' AND constraint_name = 'company_documents_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:56.184Z [debug] Executing (default): ALTER TABLE `company_documents` DROP FOREIGN KEY `company_documents_ibfk_1`;
+2026-08-29T17:03:56.212Z [debug] Executing (default): ALTER TABLE `company_documents` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:56.343Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `type` `type` ENUM('gst', 'pan', 'other') DEFAULT 'other';
+2026-08-29T17:03:56.366Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `file_url` `file_url` VARCHAR(500);
+2026-08-29T17:03:56.385Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `verified` `verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:56.404Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.431Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.450Z [debug] Executing (default): SHOW INDEX FROM `company_documents`
+2026-08-29T17:03:56.464Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'audit_logs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:56.469Z [debug] Executing (default): SHOW FULL COLUMNS FROM `audit_logs`;
+2026-08-29T17:03:56.470Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'audit_logs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:56.477Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='audit_logs' AND constraint_name = 'audit_logs_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:56.483Z [debug] Executing (default): ALTER TABLE `audit_logs` DROP FOREIGN KEY `audit_logs_ibfk_1`;
+2026-08-29T17:03:56.522Z [debug] Executing (default): ALTER TABLE `audit_logs` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:03:56.671Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `action` `action` VARCHAR(120) NOT NULL;
+2026-08-29T17:03:56.688Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `entity` `entity` VARCHAR(80);
+2026-08-29T17:03:56.706Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `entity_id` `entity_id` INTEGER UNSIGNED;
+2026-08-29T17:03:56.733Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `metadata` `metadata` JSON;
+2026-08-29T17:03:56.751Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `ip` `ip` VARCHAR(60);
+2026-08-29T17:03:56.771Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.791Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:56.810Z [debug] Executing (default): SHOW INDEX FROM `audit_logs`
+2026-08-29T17:03:56.825Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'complaints' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:56.831Z [debug] Executing (default): SHOW FULL COLUMNS FROM `complaints`;
+2026-08-29T17:03:56.833Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'complaints' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:56.839Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='complaints' AND constraint_name = 'complaints_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:56.844Z [debug] Executing (default): ALTER TABLE `complaints` DROP FOREIGN KEY `complaints_ibfk_1`;
+2026-08-29T17:03:56.873Z [debug] Executing (default): ALTER TABLE `complaints` ADD FOREIGN KEY (`raised_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:57.067Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `against_user_id` `against_user_id` INTEGER UNSIGNED;
+2026-08-29T17:03:57.076Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `type` `type` VARCHAR(80) NOT NULL;
+2026-08-29T17:03:57.086Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `description` `description` TEXT NOT NULL;
+2026-08-29T17:03:57.095Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `status` `status` ENUM('open', 'investigating', 'resolved', 'dismissed') DEFAULT 'open';
+2026-08-29T17:03:57.105Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `resolution` `resolution` TEXT;
+2026-08-29T17:03:57.116Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:57.126Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:57.137Z [debug] Executing (default): SHOW INDEX FROM `complaints`
+2026-08-29T17:03:57.145Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'saved_jobs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:57.148Z [debug] Executing (default): SHOW FULL COLUMNS FROM `saved_jobs`;
+2026-08-29T17:03:57.149Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'saved_jobs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:57.152Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='saved_jobs' AND constraint_name = 'saved_jobs_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:57.155Z [debug] Executing (default): ALTER TABLE `saved_jobs` DROP FOREIGN KEY `saved_jobs_ibfk_1`;
+2026-08-29T17:03:57.172Z [debug] Executing (default): ALTER TABLE `saved_jobs` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:57.311Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='saved_jobs' AND constraint_name = 'saved_jobs_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:57.315Z [debug] Executing (default): ALTER TABLE `saved_jobs` DROP FOREIGN KEY `saved_jobs_ibfk_2`;
+2026-08-29T17:03:57.341Z [debug] Executing (default): ALTER TABLE `saved_jobs` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+2026-08-29T17:03:57.469Z [debug] Executing (default): ALTER TABLE `saved_jobs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:57.486Z [debug] Executing (default): ALTER TABLE `saved_jobs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:57.509Z [debug] Executing (default): SHOW INDEX FROM `saved_jobs`
+2026-08-29T17:03:57.526Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'messages' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:57.532Z [debug] Executing (default): SHOW FULL COLUMNS FROM `messages`;
+2026-08-29T17:03:57.534Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'messages' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:57.540Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='messages' AND constraint_name = 'messages_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:57.545Z [debug] Executing (default): ALTER TABLE `messages` DROP FOREIGN KEY `messages_ibfk_1`;
+2026-08-29T17:03:57.574Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='messages' AND constraint_name = 'messages_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:03:57.579Z [debug] Executing (default): ALTER TABLE `messages` DROP FOREIGN KEY `messages_ibfk_2`;
+2026-08-29T17:03:57.604Z [debug] Executing (default): ALTER TABLE `messages` ADD FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:57.745Z [debug] Executing (default): ALTER TABLE `messages` ADD FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:03:57.909Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `application_id` `application_id` INTEGER UNSIGNED;
+2026-08-29T17:03:57.930Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `body` `body` TEXT NOT NULL;
+2026-08-29T17:03:57.947Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `is_read` `is_read` TINYINT(1) DEFAULT false;
+2026-08-29T17:03:57.964Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:57.992Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:58.011Z [debug] Executing (default): SHOW INDEX FROM `messages`
+2026-08-29T17:03:58.031Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'recruiter_notes' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:58.037Z [debug] Executing (default): SHOW FULL COLUMNS FROM `recruiter_notes`;
+2026-08-29T17:03:58.038Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'recruiter_notes' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:58.044Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `recruiter_id` `recruiter_id` INTEGER UNSIGNED NOT NULL;
+2026-08-29T17:03:58.064Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `worker_id` `worker_id` INTEGER UNSIGNED NOT NULL;
+2026-08-29T17:03:58.084Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `application_id` `application_id` INTEGER UNSIGNED;
+2026-08-29T17:03:58.112Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `note` `note` TEXT NOT NULL;
+2026-08-29T17:03:58.136Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:58.165Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:58.188Z [debug] Executing (default): SHOW INDEX FROM `recruiter_notes`
+2026-08-29T17:03:58.200Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'platform_settings' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:03:58.205Z [debug] Executing (default): SHOW FULL COLUMNS FROM `platform_settings`;
+2026-08-29T17:03:58.206Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'platform_settings' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:03:58.211Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `key` `key` VARCHAR(80) NOT NULL UNIQUE;
+2026-08-29T17:03:58.257Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `value` `value` TEXT;
+2026-08-29T17:03:58.272Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:03:58.288Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:03:58.308Z [debug] Executing (default): SHOW INDEX FROM `platform_settings`
+2026-08-29T17:03:58.323Z [info] MySQL connected & models synced
+2026-08-29T17:03:58.331Z [info] API listening on :5000
+2026-08-29T17:48:39.518Z [debug] Executing (default): SELECT 1+1 AS result
+2026-08-29T17:48:39.529Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'users' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:39.538Z [debug] Executing (default): SHOW FULL COLUMNS FROM `users`;
+2026-08-29T17:48:39.545Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'users' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:39.551Z [debug] Executing (default): ALTER TABLE `users` CHANGE `email` `email` VARCHAR(190) NOT NULL UNIQUE;
+2026-08-29T17:48:39.710Z [debug] Executing (default): ALTER TABLE `users` CHANGE `password` `password` VARCHAR(255) NOT NULL;
+2026-08-29T17:48:39.778Z [debug] Executing (default): ALTER TABLE `users` CHANGE `role` `role` ENUM('admin', 'employer', 'recruiter', 'worker') NOT NULL;
+2026-08-29T17:48:39.866Z [debug] Executing (default): ALTER TABLE `users` CHANGE `is_active` `is_active` TINYINT(1) DEFAULT true;
+2026-08-29T17:48:39.951Z [debug] Executing (default): ALTER TABLE `users` CHANGE `is_email_verified` `is_email_verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:40.015Z [debug] Executing (default): ALTER TABLE `users` CHANGE `refresh_token` `refresh_token` TEXT;
+2026-08-29T17:48:40.077Z [debug] Executing (default): ALTER TABLE `users` CHANGE `last_login_at` `last_login_at` DATETIME;
+2026-08-29T17:48:40.153Z [debug] Executing (default): ALTER TABLE `users` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:40.219Z [debug] Executing (default): ALTER TABLE `users` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:40.289Z [debug] Executing (default): SHOW INDEX FROM `users`
+2026-08-29T17:48:40.300Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'companies' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:40.303Z [debug] Executing (default): SHOW FULL COLUMNS FROM `companies`;
+2026-08-29T17:48:40.304Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'companies' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:40.310Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `name` `name` VARCHAR(190) NOT NULL;
+2026-08-29T17:48:40.348Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `gst` `gst` VARCHAR(20);
+2026-08-29T17:48:40.387Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `pan` `pan` VARCHAR(20);
+2026-08-29T17:48:40.447Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `address` `address` VARCHAR(255);
+2026-08-29T17:48:40.572Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:48:40.588Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:48:40.606Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `pincode` `pincode` VARCHAR(10);
+2026-08-29T17:48:40.632Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `industry` `industry` VARCHAR(120);
+2026-08-29T17:48:40.662Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `logo` `logo` VARCHAR(500);
+2026-08-29T17:48:40.695Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `website` `website` VARCHAR(255);
+2026-08-29T17:48:40.727Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `description` `description` TEXT;
+2026-08-29T17:48:40.760Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `employee_count` `employee_count` INTEGER DEFAULT 0;
+2026-08-29T17:48:40.804Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `verification_status` `verification_status` ENUM('pending', 'approved', 'rejected', 'suspended') DEFAULT 'pending';
+2026-08-29T17:48:40.844Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:40.880Z [debug] Executing (default): ALTER TABLE `companies` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:40.912Z [debug] Executing (default): SHOW INDEX FROM `companies`
+2026-08-29T17:48:40.916Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'workers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:40.920Z [debug] Executing (default): SHOW FULL COLUMNS FROM `workers`;
+2026-08-29T17:48:40.920Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'workers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:40.924Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='workers' AND constraint_name = 'workers_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:40.926Z [debug] Executing (default): ALTER TABLE `workers` DROP FOREIGN KEY `workers_ibfk_1`;
+2026-08-29T17:48:40.987Z [debug] Executing (default): ALTER TABLE `workers` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:41.243Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `first_name` `first_name` VARCHAR(80) NOT NULL;
+2026-08-29T17:48:41.301Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `last_name` `last_name` VARCHAR(80) NOT NULL;
+2026-08-29T17:48:41.354Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:48:41.410Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `photo` `photo` VARCHAR(500);
+2026-08-29T17:48:41.467Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `date_of_birth` `date_of_birth` DATE;
+2026-08-29T17:48:41.518Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `gender` `gender` ENUM('male', 'female', 'other');
+2026-08-29T17:48:41.582Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `address` `address` VARCHAR(255);
+2026-08-29T17:48:41.622Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:48:41.674Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:48:41.728Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `pincode` `pincode` VARCHAR(10);
+2026-08-29T17:48:41.773Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `expected_salary` `expected_salary` INTEGER;
+2026-08-29T17:48:41.817Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `preferred_locations` `preferred_locations` JSON;
+2026-08-29T17:48:41.860Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `availability` `availability` ENUM('immediate', '15_days', '30_days', 'not_looking') DEFAULT 'immediate';
+2026-08-29T17:48:41.917Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `languages` `languages` JSON;
+2026-08-29T17:48:41.981Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `education` `education` VARCHAR(190);
+2026-08-29T17:48:42.028Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `years_experience` `years_experience` INTEGER DEFAULT 0;
+2026-08-29T17:48:42.064Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `profile_completion` `profile_completion` INTEGER DEFAULT 20;
+2026-08-29T17:48:42.111Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `trust_score` `trust_score` DECIMAL(4,1) DEFAULT 50;
+2026-08-29T17:48:42.144Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `digital_id` `digital_id` VARCHAR(40) UNIQUE;
+2026-08-29T17:48:42.281Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `qr_code` `qr_code` TEXT;
+2026-08-29T17:48:42.323Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `is_verified` `is_verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:42.373Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `bio` `bio` TEXT;
+2026-08-29T17:48:42.456Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:42.522Z [debug] Executing (default): ALTER TABLE `workers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:42.547Z [debug] Executing (default): SHOW INDEX FROM `workers`
+2026-08-29T17:48:42.574Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'employers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:42.579Z [debug] Executing (default): SHOW FULL COLUMNS FROM `employers`;
+2026-08-29T17:48:42.580Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'employers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:42.586Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employers' AND constraint_name = 'employers_ibfk_7' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:42.589Z [debug] Executing (default): ALTER TABLE `employers` DROP FOREIGN KEY `employers_ibfk_7`;
+2026-08-29T17:48:42.615Z [debug] Executing (default): ALTER TABLE `employers` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:42.731Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employers' AND constraint_name = 'employers_ibfk_8' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:42.732Z [debug] Executing (default): ALTER TABLE `employers` DROP FOREIGN KEY `employers_ibfk_8`;
+2026-08-29T17:48:42.748Z [debug] Executing (default): ALTER TABLE `employers` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:42.894Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `designation` `designation` VARCHAR(120) DEFAULT 'Owner';
+2026-08-29T17:48:42.913Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `is_owner` `is_owner` TINYINT(1) DEFAULT true;
+2026-08-29T17:48:42.937Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:48:42.957Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `full_name` `full_name` VARCHAR(120);
+2026-08-29T17:48:42.981Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:42.998Z [debug] Executing (default): ALTER TABLE `employers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:43.021Z [debug] Executing (default): SHOW INDEX FROM `employers`
+2026-08-29T17:48:43.025Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'recruiters' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:43.031Z [debug] Executing (default): SHOW FULL COLUMNS FROM `recruiters`;
+2026-08-29T17:48:43.031Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'recruiters' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:43.038Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='recruiters' AND constraint_name = 'recruiters_ibfk_7' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:43.045Z [debug] Executing (default): ALTER TABLE `recruiters` DROP FOREIGN KEY `recruiters_ibfk_7`;
+2026-08-29T17:48:43.098Z [debug] Executing (default): ALTER TABLE `recruiters` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:43.252Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='recruiters' AND constraint_name = 'recruiters_ibfk_8' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:43.255Z [debug] Executing (default): ALTER TABLE `recruiters` DROP FOREIGN KEY `recruiters_ibfk_8`;
+2026-08-29T17:48:43.274Z [debug] Executing (default): ALTER TABLE `recruiters` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:43.402Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `invited_by` `invited_by` INTEGER UNSIGNED;
+2026-08-29T17:48:43.426Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `designation` `designation` VARCHAR(120) DEFAULT 'Recruiter';
+2026-08-29T17:48:43.448Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `phone` `phone` VARCHAR(20);
+2026-08-29T17:48:43.469Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `full_name` `full_name` VARCHAR(120);
+2026-08-29T17:48:43.488Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `status` `status` ENUM('invited', 'active', 'deactivated') DEFAULT 'invited';
+2026-08-29T17:48:43.511Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:43.531Z [debug] Executing (default): ALTER TABLE `recruiters` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:43.550Z [debug] Executing (default): SHOW INDEX FROM `recruiters`
+2026-08-29T17:48:43.553Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'jobs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:43.554Z [debug] Executing (default): SHOW FULL COLUMNS FROM `jobs`;
+2026-08-29T17:48:43.555Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'jobs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:43.558Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_7' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:43.560Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_7`;
+2026-08-29T17:48:43.593Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:43.786Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_8' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:43.789Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_8`;
+2026-08-29T17:48:43.841Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`posted_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:44.006Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='jobs' AND constraint_name = 'jobs_ibfk_9' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:44.008Z [debug] Executing (default): ALTER TABLE `jobs` DROP FOREIGN KEY `jobs_ibfk_9`;
+2026-08-29T17:48:44.039Z [debug] Executing (default): ALTER TABLE `jobs` ADD FOREIGN KEY (`recruiter_id`) REFERENCES `recruiters` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:48:44.222Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `title` `title` VARCHAR(190) NOT NULL;
+2026-08-29T17:48:44.259Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `description` `description` TEXT;
+2026-08-29T17:48:44.297Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `salary_min` `salary_min` INTEGER;
+2026-08-29T17:48:44.328Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `salary_max` `salary_max` INTEGER;
+2026-08-29T17:48:44.359Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `experience_min` `experience_min` INTEGER DEFAULT 0;
+2026-08-29T17:48:44.402Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `experience_max` `experience_max` INTEGER DEFAULT 10;
+2026-08-29T17:48:44.467Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `vacancies` `vacancies` INTEGER DEFAULT 1;
+2026-08-29T17:48:44.488Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `location` `location` VARCHAR(190);
+2026-08-29T17:48:44.504Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `city` `city` VARCHAR(80);
+2026-08-29T17:48:44.599Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `state` `state` VARCHAR(80);
+2026-08-29T17:48:44.632Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `job_type` `job_type` ENUM('full_time', 'contract', 'daily_wage', 'part_time') DEFAULT 'full_time';
+2026-08-29T17:48:44.657Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `shift` `shift` ENUM('day', 'night', 'rotational') DEFAULT 'day';
+2026-08-29T17:48:44.697Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `accommodation` `accommodation` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:44.722Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `food` `food` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:44.756Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `benefits` `benefits` TEXT;
+2026-08-29T17:48:44.791Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `deadline` `deadline` DATE;
+2026-08-29T17:48:44.816Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `status` `status` ENUM('draft', 'published', 'paused', 'closed') DEFAULT 'draft';
+2026-08-29T17:48:44.839Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:44.865Z [debug] Executing (default): ALTER TABLE `jobs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:44.898Z [debug] Executing (default): SHOW INDEX FROM `jobs`
+2026-08-29T17:48:44.902Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'applications' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:44.906Z [debug] Executing (default): SHOW FULL COLUMNS FROM `applications`;
+2026-08-29T17:48:44.906Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'applications' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:44.911Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:44.914Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_4`;
+2026-08-29T17:48:44.939Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:45.112Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_5' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:45.115Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_5`;
+2026-08-29T17:48:45.143Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:45.325Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='applications' AND constraint_name = 'applications_ibfk_6' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:45.327Z [debug] Executing (default): ALTER TABLE `applications` DROP FOREIGN KEY `applications_ibfk_6`;
+2026-08-29T17:48:45.358Z [debug] Executing (default): ALTER TABLE `applications` ADD FOREIGN KEY (`recruiter_id`) REFERENCES `recruiters` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:48:45.514Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `status` `status` ENUM('applied', 'shortlisted', 'interview_scheduled', 'interview_completed', 'selected', 'rejected', 'offer_sent', 'joined') DEFAULT 'applied';
+2026-08-29T17:48:45.542Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `cover_note` `cover_note` TEXT;
+2026-08-29T17:48:45.567Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:45.590Z [debug] Executing (default): ALTER TABLE `applications` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:45.614Z [debug] Executing (default): SHOW INDEX FROM `applications`
+2026-08-29T17:48:45.618Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:45.622Z [debug] Executing (default): SHOW FULL COLUMNS FROM `skills`;
+2026-08-29T17:48:45.622Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:45.626Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `name` `name` VARCHAR(80) NOT NULL UNIQUE;
+2026-08-29T17:48:45.687Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `category` `category` VARCHAR(80);
+2026-08-29T17:48:45.704Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:45.721Z [debug] Executing (default): ALTER TABLE `skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:45.746Z [debug] Executing (default): SHOW INDEX FROM `skills`
+2026-08-29T17:48:45.750Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'worker_skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:45.751Z [debug] Executing (default): SHOW FULL COLUMNS FROM `worker_skills`;
+2026-08-29T17:48:45.751Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'worker_skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:45.753Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='worker_skills' AND constraint_name = 'worker_skills_ibfk_3' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:45.754Z [debug] Executing (default): ALTER TABLE `worker_skills` DROP FOREIGN KEY `worker_skills_ibfk_3`;
+2026-08-29T17:48:45.768Z [debug] Executing (default): ALTER TABLE `worker_skills` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:45.880Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='worker_skills' AND constraint_name = 'worker_skills_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:45.883Z [debug] Executing (default): ALTER TABLE `worker_skills` DROP FOREIGN KEY `worker_skills_ibfk_4`;
+2026-08-29T17:48:45.905Z [debug] Executing (default): ALTER TABLE `worker_skills` ADD FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:46.071Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `proficiency` `proficiency` ENUM('beginner', 'intermediate', 'expert') DEFAULT 'intermediate';
+2026-08-29T17:48:46.089Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.109Z [debug] Executing (default): ALTER TABLE `worker_skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.133Z [debug] Executing (default): SHOW INDEX FROM `worker_skills`
+2026-08-29T17:48:46.137Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'job_skills' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:46.141Z [debug] Executing (default): SHOW FULL COLUMNS FROM `job_skills`;
+2026-08-29T17:48:46.142Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'job_skills' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:46.147Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='job_skills' AND constraint_name = 'job_skills_ibfk_3' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:46.159Z [debug] Executing (default): ALTER TABLE `job_skills` DROP FOREIGN KEY `job_skills_ibfk_3`;
+2026-08-29T17:48:46.205Z [debug] Executing (default): ALTER TABLE `job_skills` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:46.320Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='job_skills' AND constraint_name = 'job_skills_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:46.321Z [debug] Executing (default): ALTER TABLE `job_skills` DROP FOREIGN KEY `job_skills_ibfk_4`;
+2026-08-29T17:48:46.335Z [debug] Executing (default): ALTER TABLE `job_skills` ADD FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:46.448Z [debug] Executing (default): ALTER TABLE `job_skills` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.463Z [debug] Executing (default): ALTER TABLE `job_skills` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.480Z [debug] Executing (default): SHOW INDEX FROM `job_skills`
+2026-08-29T17:48:46.484Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'certificates' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:46.488Z [debug] Executing (default): SHOW FULL COLUMNS FROM `certificates`;
+2026-08-29T17:48:46.488Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'certificates' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:46.493Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='certificates' AND constraint_name = 'certificates_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:46.497Z [debug] Executing (default): ALTER TABLE `certificates` DROP FOREIGN KEY `certificates_ibfk_1`;
+2026-08-29T17:48:46.518Z [debug] Executing (default): ALTER TABLE `certificates` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:46.662Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `name` `name` VARCHAR(190) NOT NULL;
+2026-08-29T17:48:46.681Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `issuer` `issuer` VARCHAR(190);
+2026-08-29T17:48:46.699Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `issued_at` `issued_at` DATE;
+2026-08-29T17:48:46.716Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `file_url` `file_url` VARCHAR(500);
+2026-08-29T17:48:46.735Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `verified` `verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:46.754Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.772Z [debug] Executing (default): ALTER TABLE `certificates` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.790Z [debug] Executing (default): SHOW INDEX FROM `certificates`
+2026-08-29T17:48:46.795Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'interviews' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:46.799Z [debug] Executing (default): SHOW FULL COLUMNS FROM `interviews`;
+2026-08-29T17:48:46.800Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'interviews' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:46.804Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='interviews' AND constraint_name = 'interviews_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:46.808Z [debug] Executing (default): ALTER TABLE `interviews` DROP FOREIGN KEY `interviews_ibfk_1`;
+2026-08-29T17:48:46.831Z [debug] Executing (default): ALTER TABLE `interviews` ADD FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:46.956Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `scheduled_at` `scheduled_at` DATETIME NOT NULL;
+2026-08-29T17:48:46.970Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `mode` `mode` ENUM('in_person', 'phone', 'video') DEFAULT 'in_person';
+2026-08-29T17:48:46.982Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `location` `location` VARCHAR(255);
+2026-08-29T17:48:47.057Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `status` `status` ENUM('scheduled', 'completed', 'cancelled', 'no_show') DEFAULT 'scheduled';
+2026-08-29T17:48:47.069Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `notes` `notes` TEXT;
+2026-08-29T17:48:47.082Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.094Z [debug] Executing (default): ALTER TABLE `interviews` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.111Z [debug] Executing (default): SHOW INDEX FROM `interviews`
+2026-08-29T17:48:47.116Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'offers' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:47.120Z [debug] Executing (default): SHOW FULL COLUMNS FROM `offers`;
+2026-08-29T17:48:47.121Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'offers' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:47.125Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='offers' AND constraint_name = 'offers_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:47.129Z [debug] Executing (default): ALTER TABLE `offers` DROP FOREIGN KEY `offers_ibfk_1`;
+2026-08-29T17:48:47.144Z [debug] Executing (default): ALTER TABLE `offers` ADD FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:47.250Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `salary` `salary` INTEGER NOT NULL;
+2026-08-29T17:48:47.265Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `joining_date` `joining_date` DATE;
+2026-08-29T17:48:47.276Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `letter_url` `letter_url` TEXT;
+2026-08-29T17:48:47.289Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `status` `status` ENUM('sent', 'accepted', 'declined', 'expired') DEFAULT 'sent';
+2026-08-29T17:48:47.307Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `terms` `terms` TEXT;
+2026-08-29T17:48:47.353Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.366Z [debug] Executing (default): ALTER TABLE `offers` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.379Z [debug] Executing (default): SHOW INDEX FROM `offers`
+2026-08-29T17:48:47.383Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'notifications' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:47.386Z [debug] Executing (default): SHOW FULL COLUMNS FROM `notifications`;
+2026-08-29T17:48:47.386Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'notifications' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:47.390Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='notifications' AND constraint_name = 'notifications_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:47.392Z [debug] Executing (default): ALTER TABLE `notifications` DROP FOREIGN KEY `notifications_ibfk_1`;
+2026-08-29T17:48:47.411Z [debug] Executing (default): ALTER TABLE `notifications` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:47.518Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `title` `title` VARCHAR(190) NOT NULL;
+2026-08-29T17:48:47.533Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `message` `message` TEXT NOT NULL;
+2026-08-29T17:48:47.550Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `type` `type` VARCHAR(60) DEFAULT 'info';
+2026-08-29T17:48:47.566Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `is_read` `is_read` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:47.583Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `metadata` `metadata` JSON;
+2026-08-29T17:48:47.598Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.613Z [debug] Executing (default): ALTER TABLE `notifications` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:47.628Z [debug] Executing (default): SHOW INDEX FROM `notifications`
+2026-08-29T17:48:47.632Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'ratings' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:47.636Z [debug] Executing (default): SHOW FULL COLUMNS FROM `ratings`;
+2026-08-29T17:48:47.637Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'ratings' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:47.642Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='ratings' AND constraint_name = 'ratings_ibfk_3' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:47.646Z [debug] Executing (default): ALTER TABLE `ratings` DROP FOREIGN KEY `ratings_ibfk_3`;
+2026-08-29T17:48:47.665Z [debug] Executing (default): ALTER TABLE `ratings` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:47.760Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='ratings' AND constraint_name = 'ratings_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:47.763Z [debug] Executing (default): ALTER TABLE `ratings` DROP FOREIGN KEY `ratings_ibfk_4`;
+2026-08-29T17:48:47.784Z [debug] Executing (default): ALTER TABLE `ratings` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:48:47.925Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `rating` `rating` DECIMAL(2,1) NOT NULL;
+2026-08-29T17:48:47.940Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `comment` `comment` TEXT;
+2026-08-29T17:48:47.959Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `type` `type` ENUM('employer_to_worker', 'worker_to_company') DEFAULT 'employer_to_worker';
+2026-08-29T17:48:47.978Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.005Z [debug] Executing (default): ALTER TABLE `ratings` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.036Z [debug] Executing (default): SHOW INDEX FROM `ratings`
+2026-08-29T17:48:48.041Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'employment_history' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:48.044Z [debug] Executing (default): SHOW FULL COLUMNS FROM `employment_history`;
+2026-08-29T17:48:48.044Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'employment_history' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:48.046Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='employment_history' AND constraint_name = 'employment_history_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:48.047Z [debug] Executing (default): ALTER TABLE `employment_history` DROP FOREIGN KEY `employment_history_ibfk_1`;
+2026-08-29T17:48:48.074Z [debug] Executing (default): ALTER TABLE `employment_history` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:48.162Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `company_name` `company_name` VARCHAR(190) NOT NULL;
+2026-08-29T17:48:48.175Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `role` `role` VARCHAR(120) NOT NULL;
+2026-08-29T17:48:48.189Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `start_date` `start_date` DATE;
+2026-08-29T17:48:48.208Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `end_date` `end_date` DATE;
+2026-08-29T17:48:48.227Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `currently_working` `currently_working` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:48.242Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `description` `description` TEXT;
+2026-08-29T17:48:48.261Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.279Z [debug] Executing (default): ALTER TABLE `employment_history` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.293Z [debug] Executing (default): SHOW INDEX FROM `employment_history`
+2026-08-29T17:48:48.297Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'verification_requests' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:48.301Z [debug] Executing (default): SHOW FULL COLUMNS FROM `verification_requests`;
+2026-08-29T17:48:48.301Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'verification_requests' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:48.305Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='verification_requests' AND constraint_name = 'verification_requests_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:48.309Z [debug] Executing (default): ALTER TABLE `verification_requests` DROP FOREIGN KEY `verification_requests_ibfk_1`;
+2026-08-29T17:48:48.334Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='verification_requests' AND constraint_name = 'verification_requests_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:48.337Z [debug] Executing (default): ALTER TABLE `verification_requests` DROP FOREIGN KEY `verification_requests_ibfk_2`;
+2026-08-29T17:48:48.357Z [debug] Executing (default): ALTER TABLE `verification_requests` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:48.459Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `type` `type` ENUM('employer', 'worker', 'certificate') NOT NULL;
+2026-08-29T17:48:48.471Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `entity_id` `entity_id` INTEGER UNSIGNED;
+2026-08-29T17:48:48.484Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `status` `status` ENUM('pending', 'approved', 'rejected') DEFAULT 'pending';
+2026-08-29T17:48:48.496Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `notes` `notes` TEXT;
+2026-08-29T17:48:48.509Z [debug] Executing (default): ALTER TABLE `verification_requests` ADD FOREIGN KEY (`reviewed_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:48:48.633Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.650Z [debug] Executing (default): ALTER TABLE `verification_requests` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.667Z [debug] Executing (default): SHOW INDEX FROM `verification_requests`
+2026-08-29T17:48:48.670Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'company_documents' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:48.672Z [debug] Executing (default): SHOW FULL COLUMNS FROM `company_documents`;
+2026-08-29T17:48:48.672Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'company_documents' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:48.676Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='company_documents' AND constraint_name = 'company_documents_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:48.678Z [debug] Executing (default): ALTER TABLE `company_documents` DROP FOREIGN KEY `company_documents_ibfk_1`;
+2026-08-29T17:48:48.693Z [debug] Executing (default): ALTER TABLE `company_documents` ADD FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:48.819Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `type` `type` ENUM('gst', 'pan', 'other') DEFAULT 'other';
+2026-08-29T17:48:48.836Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `file_url` `file_url` VARCHAR(500);
+2026-08-29T17:48:48.844Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `verified` `verified` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:48.853Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.872Z [debug] Executing (default): ALTER TABLE `company_documents` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:48.887Z [debug] Executing (default): SHOW INDEX FROM `company_documents`
+2026-08-29T17:48:48.893Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'audit_logs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:48.897Z [debug] Executing (default): SHOW FULL COLUMNS FROM `audit_logs`;
+2026-08-29T17:48:48.898Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'audit_logs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:48.901Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='audit_logs' AND constraint_name = 'audit_logs_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:48.904Z [debug] Executing (default): ALTER TABLE `audit_logs` DROP FOREIGN KEY `audit_logs_ibfk_1`;
+2026-08-29T17:48:48.928Z [debug] Executing (default): ALTER TABLE `audit_logs` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+2026-08-29T17:48:49.005Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `action` `action` VARCHAR(120) NOT NULL;
+2026-08-29T17:48:49.018Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `entity` `entity` VARCHAR(80);
+2026-08-29T17:48:49.031Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `entity_id` `entity_id` INTEGER UNSIGNED;
+2026-08-29T17:48:49.043Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `metadata` `metadata` JSON;
+2026-08-29T17:48:49.057Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `ip` `ip` VARCHAR(60);
+2026-08-29T17:48:49.073Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.087Z [debug] Executing (default): ALTER TABLE `audit_logs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.103Z [debug] Executing (default): SHOW INDEX FROM `audit_logs`
+2026-08-29T17:48:49.107Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'complaints' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:49.111Z [debug] Executing (default): SHOW FULL COLUMNS FROM `complaints`;
+2026-08-29T17:48:49.112Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'complaints' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:49.118Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='complaints' AND constraint_name = 'complaints_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:49.122Z [debug] Executing (default): ALTER TABLE `complaints` DROP FOREIGN KEY `complaints_ibfk_1`;
+2026-08-29T17:48:49.140Z [debug] Executing (default): ALTER TABLE `complaints` ADD FOREIGN KEY (`raised_by`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:49.232Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `against_user_id` `against_user_id` INTEGER UNSIGNED;
+2026-08-29T17:48:49.248Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `type` `type` VARCHAR(80) NOT NULL;
+2026-08-29T17:48:49.261Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `description` `description` TEXT NOT NULL;
+2026-08-29T17:48:49.279Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `status` `status` ENUM('open', 'investigating', 'resolved', 'dismissed') DEFAULT 'open';
+2026-08-29T17:48:49.320Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `resolution` `resolution` TEXT;
+2026-08-29T17:48:49.357Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.381Z [debug] Executing (default): ALTER TABLE `complaints` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.394Z [debug] Executing (default): SHOW INDEX FROM `complaints`
+2026-08-29T17:48:49.398Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'saved_jobs' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:49.402Z [debug] Executing (default): SHOW FULL COLUMNS FROM `saved_jobs`;
+2026-08-29T17:48:49.403Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'saved_jobs' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:49.408Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='saved_jobs' AND constraint_name = 'saved_jobs_ibfk_3' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:49.411Z [debug] Executing (default): ALTER TABLE `saved_jobs` DROP FOREIGN KEY `saved_jobs_ibfk_3`;
+2026-08-29T17:48:49.421Z [debug] Executing (default): ALTER TABLE `saved_jobs` ADD FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:49.509Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='saved_jobs' AND constraint_name = 'saved_jobs_ibfk_4' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:49.511Z [debug] Executing (default): ALTER TABLE `saved_jobs` DROP FOREIGN KEY `saved_jobs_ibfk_4`;
+2026-08-29T17:48:49.530Z [debug] Executing (default): ALTER TABLE `saved_jobs` ADD FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+2026-08-29T17:48:49.634Z [debug] Executing (default): ALTER TABLE `saved_jobs` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.642Z [debug] Executing (default): ALTER TABLE `saved_jobs` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.654Z [debug] Executing (default): SHOW INDEX FROM `saved_jobs`
+2026-08-29T17:48:49.657Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'messages' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:49.660Z [debug] Executing (default): SHOW FULL COLUMNS FROM `messages`;
+2026-08-29T17:48:49.661Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'messages' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:49.664Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='messages' AND constraint_name = 'messages_ibfk_1' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:49.666Z [debug] Executing (default): ALTER TABLE `messages` DROP FOREIGN KEY `messages_ibfk_1`;
+2026-08-29T17:48:49.684Z [debug] Executing (default): SELECT CONSTRAINT_CATALOG AS constraintCatalog, CONSTRAINT_NAME AS constraintName, CONSTRAINT_SCHEMA AS constraintSchema, CONSTRAINT_TYPE AS constraintType, TABLE_NAME AS tableName, TABLE_SCHEMA AS tableSchema from INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE table_name='messages' AND constraint_name = 'messages_ibfk_2' AND TABLE_SCHEMA = 'workforce_connect';
+2026-08-29T17:48:49.687Z [debug] Executing (default): ALTER TABLE `messages` DROP FOREIGN KEY `messages_ibfk_2`;
+2026-08-29T17:48:49.708Z [debug] Executing (default): ALTER TABLE `messages` ADD FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:49.805Z [debug] Executing (default): ALTER TABLE `messages` ADD FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+2026-08-29T17:48:49.914Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `application_id` `application_id` INTEGER UNSIGNED;
+2026-08-29T17:48:49.931Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `body` `body` TEXT NOT NULL;
+2026-08-29T17:48:49.947Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `is_read` `is_read` TINYINT(1) DEFAULT false;
+2026-08-29T17:48:49.961Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.975Z [debug] Executing (default): ALTER TABLE `messages` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:49.995Z [debug] Executing (default): SHOW INDEX FROM `messages`
+2026-08-29T17:48:49.999Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'recruiter_notes' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:50.003Z [debug] Executing (default): SHOW FULL COLUMNS FROM `recruiter_notes`;
+2026-08-29T17:48:50.003Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'recruiter_notes' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:50.006Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `recruiter_id` `recruiter_id` INTEGER UNSIGNED NOT NULL;
+2026-08-29T17:48:50.023Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `worker_id` `worker_id` INTEGER UNSIGNED NOT NULL;
+2026-08-29T17:48:50.034Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `application_id` `application_id` INTEGER UNSIGNED;
+2026-08-29T17:48:50.049Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `note` `note` TEXT NOT NULL;
+2026-08-29T17:48:50.062Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:50.075Z [debug] Executing (default): ALTER TABLE `recruiter_notes` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:50.157Z [debug] Executing (default): SHOW INDEX FROM `recruiter_notes`
+2026-08-29T17:48:50.161Z [debug] Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'platform_settings' AND TABLE_SCHEMA = 'workforce_connect'
+2026-08-29T17:48:50.164Z [debug] Executing (default): SHOW FULL COLUMNS FROM `platform_settings`;
+2026-08-29T17:48:50.164Z [debug] Executing (default): SELECT CONSTRAINT_NAME as constraint_name,CONSTRAINT_NAME as constraintName,CONSTRAINT_SCHEMA as constraintSchema,CONSTRAINT_SCHEMA as constraintCatalog,TABLE_NAME as tableName,TABLE_SCHEMA as tableSchema,TABLE_SCHEMA as tableCatalog,COLUMN_NAME as columnName,REFERENCED_TABLE_SCHEMA as referencedTableSchema,REFERENCED_TABLE_SCHEMA as referencedTableCatalog,REFERENCED_TABLE_NAME as referencedTableName,REFERENCED_COLUMN_NAME as referencedColumnName FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME = 'platform_settings' AND CONSTRAINT_NAME!='PRIMARY' AND CONSTRAINT_SCHEMA='workforce_connect' AND REFERENCED_TABLE_NAME IS NOT NULL;
+2026-08-29T17:48:50.168Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `key` `key` VARCHAR(80) NOT NULL UNIQUE;
+2026-08-29T17:48:50.221Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `value` `value` TEXT;
+2026-08-29T17:48:50.237Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+2026-08-29T17:48:50.257Z [debug] Executing (default): ALTER TABLE `platform_settings` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+2026-08-29T17:48:50.279Z [debug] Executing (default): SHOW INDEX FROM `platform_settings`
+2026-08-29T17:48:50.285Z [info] MySQL connected & models synced
+2026-08-29T17:48:50.292Z [info] API listening on :5000
+2026-08-29T17:50:49.950Z [debug] Executing (default): SELECT `id`, `email`, `password`, `role`, `is_active` AS `isActive`, `is_email_verified` AS `isEmailVerified`, `refresh_token` AS `refreshToken`, `last_login_at` AS `lastLoginAt`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `User` WHERE `User`.`id` = 3;
+2026-08-29T17:50:49.961Z [debug] Executing (default): SELECT `id`, `email`, `role`, `is_active` AS `isActive`, `is_email_verified` AS `isEmailVerified`, `last_login_at` AS `lastLoginAt`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `User` WHERE `User`.`id` = 3;
+2026-08-29T17:50:49.974Z [debug] Executing (default): SELECT `Recruiter`.`id`, `Recruiter`.`user_id` AS `userId`, `Recruiter`.`company_id` AS `companyId`, `Recruiter`.`invited_by` AS `invitedBy`, `Recruiter`.`designation`, `Recruiter`.`phone`, `Recruiter`.`full_name` AS `fullName`, `Recruiter`.`status`, `Recruiter`.`created_at` AS `createdAt`, `Recruiter`.`updated_at` AS `updatedAt`, `Company`.`id` AS `Company.id`, `Company`.`name` AS `Company.name`, `Company`.`gst` AS `Company.gst`, `Company`.`pan` AS `Company.pan`, `Company`.`address` AS `Company.address`, `Company`.`city` AS `Company.city`, `Company`.`state` AS `Company.state`, `Company`.`pincode` AS `Company.pincode`, `Company`.`industry` AS `Company.industry`, `Company`.`logo` AS `Company.logo`, `Company`.`website` AS `Company.website`, `Company`.`description` AS `Company.description`, `Company`.`employee_count` AS `Company.employeeCount`, `Company`.`verification_status` AS `Company.verificationStatus`, `Company`.`created_at` AS `Company.createdAt`, `Company`.`updated_at` AS `Company.updatedAt` FROM `recruiters` AS `Recruiter` LEFT OUTER JOIN `companies` AS `Company` ON `Recruiter`.`company_id` = `Company`.`id` WHERE `Recruiter`.`user_id` = 3 LIMIT 1;
+2026-08-29T17:50:50.028Z [debug] Executing (default): SELECT `id`, `email`, `password`, `role`, `is_active` AS `isActive`, `is_email_verified` AS `isEmailVerified`, `refresh_token` AS `refreshToken`, `last_login_at` AS `lastLoginAt`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `User` WHERE `User`.`id` = 3;
+2026-08-29T17:50:50.034Z [debug] Executing (default): SELECT `id`, `email`, `role`, `is_active` AS `isActive`, `is_email_verified` AS `isEmailVerified`, `last_login_at` AS `lastLoginAt`, `created_at` AS `createdAt`, `updated_at` AS `updatedAt` FROM `users` AS `User` WHERE `User`.`id` = 3;
+2026-08-29T17:50:50.042Z [debug] Executing (default): SELECT `Recruiter`.`id`, `Recruiter`.`user_id` AS `userId`, `Recruiter`.`company_id` AS `companyId`, `Recruiter`.`invited_by` AS `invitedBy`, `Recruiter`.`designation`, `Recruiter`.`phone`, `Recruiter`.`full_name` AS `fullName`, `Recruiter`.`status`, `Recruiter`.`created_at` AS `createdAt`, `Recruiter`.`updated_at` AS `updatedAt`, `Company`.`id` AS `Company.id`, `Company`.`name` AS `Company.name`, `Company`.`gst` AS `Company.gst`, `Company`.`pan` AS `Company.pan`, `Company`.`address` AS `Company.address`, `Company`.`city` AS `Company.city`, `Company`.`state` AS `Company.state`, `Company`.`pincode` AS `Company.pincode`, `Company`.`industry` AS `Company.industry`, `Company`.`logo` AS `Company.logo`, `Company`.`website` AS `Company.website`, `Company`.`description` AS `Company.description`, `Company`.`employee_count` AS `Company.employeeCount`, `Company`.`verification_status` AS `Company.verificationStatus`, `Company`.`created_at` AS `Company.createdAt`, `Company`.`updated_at` AS `Company.updatedAt` FROM `recruiters` AS `Recruiter` LEFT OUTER JOIN `companies` AS `Company` ON `Recruiter`.`company_id` = `Company`.`id` WHERE `Recruiter`.`user_id` = 3 LIMIT 1;
